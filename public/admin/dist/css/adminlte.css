@@ -10257,6 +10257,7 @@ body,
 
 .layout-navbar-fixed .wrapper .main-header {
   left: 0;
+  width: 100%;
   position: fixed;
   right: 0;
   top: 0;

@@ -17,10 +17,10 @@ class TujuanController extends Controller
     	$userid = Auth()->user()->id;
     	foreach ($req->tambahkan as $d) {
     	
-    	$destinasi = \App\Destinasi::where('id_destinasi','=',$d)->first();
+    	$destinasi = \App\Destinasi::where('id','=',$d)->first();
 
     	$m = new \App\Tujuan;
-    	$m->destinasi_id = $destinasi->id_destinasi;
+    	$m->destinasi_id = $destinasi->id;
     	$m->user_id = $userid;
     	$m->save();
     	}
@@ -56,8 +56,34 @@ class TujuanController extends Controller
         $tujuan = \App\Destinasi::where('id_destinasi','=',$id)->first();
         return view('detail', compact('tujuan'));
     }
-    public function storePaket()
+    public function getPaket()
     {
-        return view('admin.paket');
+        $dp = \App\DetailPaket::whereNotNull('id')->paginate(1);
+        return view('admin.paket', compact('dp'));
+    }
+    public function buatPaket()
+    {
+        $show = \App\Destinasi::All();
+        return view('admin.tambah-paket', compact('show'));
+    }
+    public function addPaket(Request $req)
+    {
+        $userid = Auth()->user()->id;
+        $x = new \App\DetailPaket;
+        $x->id = mt_rand(100,9999);
+        foreach ($req->tambahkan as $d) {
+        
+        $destinasi = \App\Destinasi::where('id','=',$d)->first();
+
+        \App\Paket::create([
+            'id' => mt_rand(999,9999),
+            'destinasi_id' => $destinasi->id,
+            'detail_paket_id' => $x->id,
+        ]);
+        }
+        $x->nama_paket = $req->nama_paket;
+        $x->harga = $req->harga_paket;
+        $x->save();
+        return redirect('/paket-wisata');
     }
 }

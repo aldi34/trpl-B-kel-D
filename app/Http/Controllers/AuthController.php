@@ -40,12 +40,12 @@ class AuthController extends Controller
     	if (Auth::attempt($request->only('email','password'))) {
     		return redirect('/index');
     	}
-    	return 'Password Salah';
+    	return redirect()->back();
     }
     public function logout()
     {
         Auth::logout();
-        return view('beranda');
+        return redirect('/');
     }
     public function role()
     {
@@ -53,9 +53,9 @@ class AuthController extends Controller
         if (Auth()->user()->role == 'admin') {
             return redirect('/home-admin');
         }else if (Auth()->user()->role == 'pengunjung') {
-            return view('user.homeuser');
+            return redirect('/user-home');
         }else if (Auth()->user()->role == 'mitra') {
-            return view('user.homeuser');
+            return redirect('/home-mitra');
         }
 
     }

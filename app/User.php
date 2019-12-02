@@ -41,4 +41,8 @@ class User extends Authenticatable
     {
         return $this->hasOne('App\Mitra');
     }
+    public function pengunjung()
+    {
+        return $this->hasOne('App\Pengunjung');
+    }
 }

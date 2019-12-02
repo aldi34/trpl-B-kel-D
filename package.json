@@ -23,6 +23,7 @@
         "vue": "^2.5.17"
     },
     "dependencies": {
+        "bootstrap-fileinput": "^5.0.7",
         "leaflet-routing-machine": "^3.2.12"
     }
 }

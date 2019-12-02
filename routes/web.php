@@ -11,14 +11,20 @@
 |
 */
 
-Route::get('/beranda', function () {
-    return view('beranda');
-});
+
 
 Route::get('/', function () {
     return view('beranda');
 });
 
+// Route::get('/bayar-sekarang', function () {
+//     return view('user.bayar-sekarang');
+// });
+
+
+Route::get('/user-home', function () {
+    return view('user.layouts.index');
+});
 
 
 Route::get('/home-mitra', function () {
@@ -70,6 +76,7 @@ Route::get('/test','IndexController@map');
 
 Route::get('/pilihLokasi','indexController@delete');
 
+
 Route::get('/map',function(){
     return view ('map');
 });
@@ -84,14 +91,33 @@ Route::group(['middleware' => ['auth','checkRole:admin,pengunjung,mitra']], func
 
 Route::get('/index','AuthController@role');
 
+Route::get('/logout','AuthController@logout');
+
 });
+
+Route::group(['middleware' => ['auth','checkRole:mitra']], function(){
+
+Route::get('/pencari-travel','TripController@pencariTravel');
+
+Route::get('/detail-penjemputan/{id}','TripController@detailJemput');
+
+});    
 
 Route::group(['middleware' => ['auth','checkRole:admin']], function(){
 
 Route::post('/verif-mitra','IndexController@verifMitra');
 
-Route::get('/paket-wisata','TujuanController@storePaket');
+Route::get('/paket-wisata','TujuanController@getPaket');
 
+Route::get('/tambah-paket','TujuanController@buatPaket');
+
+Route::post('/tambahkan-paked','TujuanController@addPaket');
+
+Route::get('/bukti-pembayaran','PembayaranController@adminDisplay');
+
+Route::post('/verif-bukti-sekarang','PembayaranController@accBukti');
+
+Route::post('/jangan-verif-bukti-sekarang','PembayaranController@tolakBukti');
 
 });
 
@@ -124,11 +150,30 @@ Route::get('/data-mitra','IndexController@showw3');
 
 Route::group(['middleware' => ['auth','checkRole:pengunjung']], function(){
 
+Route::get('/bayar-sekarang/{id}','PembayaranController@uploadBukti');
+
+Route::get('/edit-pembayaran/{id}','PembayaranController@editBukti');
+
+Route::post('/edit-bukti-bayar','PembayaranController@updateBukti');
+
+Route::post('upload-bukti-bayar','PembayaranController@storeBukti');    
+
+Route::get('/pesanan-anda','PembayaranController@index');
+
+// Route::get('/view-wisata','IndexController@index');
+
 Route::post('/tambah-tujuan','TujuanController@create');
 
 Route::get('/tujuan','TujuanController@Show');
 
+Route::post('/pesan-travel-sekarang','TripController@bookNow');
+
+Route::get('/mulai-trip','TripController@index');
+
+Route::get('/detail-wisata/{id}','TripController@detailWisata');
+
 // Route::get('/tujuan','TujuanController@Sum');
+
 
 
 

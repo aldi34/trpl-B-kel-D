@@ -120,7 +120,7 @@
             </a>
           </li>
           <li class="nav-item">
-            <a href="/barang" class="nav-link">
+            <a href="/bukti-pembayaran" class="nav-link">
               <i class="nav-icon far fa-money-bill-alt"></i>
               <p>
                 Data Transaksi

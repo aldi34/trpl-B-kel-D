@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use DB;
+use Auth;
 use Illuminate\Http\Request;
 
 class indexController extends Controller
@@ -66,7 +67,6 @@ class indexController extends Controller
                 'nama_mitra' => $req->namamitra,
                 'nama_pemilik' => $req->nama,
                 'nomer_ktp' => $req->ktp,
-                'jenis_kelamin' => $req->gender,
                 'jenis_kendaraan' => $req->jenis,
                 'jumlah_kendaraan' => $req->jumlah,
                 'no_telp' => $req->telp,
@@ -93,7 +93,10 @@ class indexController extends Controller
 
     public function showw(Request $request)
     {
-       $show = \App\Pembeli::All();
+       $show = \App\Pemesanan::select('*')
+            ->where('status','lunas')
+            ->whereNotNull('bukti_bayar')
+            ->get();
        return view ('admin.dataPelanggan', compact('show'));
     }
 
@@ -140,6 +143,15 @@ class indexController extends Controller
                  'status' => 1,   
             ]);
         return redirect()->back();
+    }
+
+    public function index()
+    {
+        $userid = Auth::user()->id;
+        $pengunjung = \App\Pengunjung::where('user_id',$userid)->first();
+        $pesanan = \App\Pemesanan::where('pengunjung_id',$pengunjung->id)->get();
+
+        return view('user.view-wisata   ',compact('pesanan'));
     }
     
 }

@@ -30,7 +30,7 @@ Daftar Mitra
 @stop
 
 @section('content')
-	<div class="text" style="margin-top: 80px; width: 100%; height: 80px;">
+	<div class="text" style="margin-top: 150px; width: 100%; height: 80px;">
 	
 	<h1 style="width: 50%; text-align: center; margin-left: 25%">Isi Formulir Dibawah Ini</h1>
 	
@@ -50,14 +50,7 @@ Daftar Mitra
     <label for="ktp">Nomer KTP</label>
     <input type="number" class="form-control" id="ktp" name="ktp" placeholder="Masukkan Nomer KTP">
   </div>
-  <div class="form-group">
-    <label for="gender">Jenis Kelamin</label>
-  <select name="gender" id="gender" class="form-control">
-        <option value="" disabled selected>Pilih Jenis Kelamin</option>
-        <option value="laki-laki">Laki-Laki</option>
-        <option value="perempuan">Perempuan</option>
-  </select>
-</div>
+  
   <div class="row" style="margin-bottom: 15px;">
     <div class="col">
     	<label for="tempatlahir">Jenis Kendaraan</label>

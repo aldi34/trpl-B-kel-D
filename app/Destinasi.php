@@ -7,7 +7,7 @@ use Illuminate\Database\Eloquent\Model;
 class Destinasi extends Model
 {
     protected $table = 'destinasi';
-    protected $fillable = ['id_destinasi','nama_destinasi','tipe_destinasi','provinsi_id','kota_id','nama_kota','nama_provinsi','harga','gambar','Latitude','longitude'];
+    protected $fillable = ['id','nama_destinasi','tipe_destinasi','provinsi_id','kota_id','nama_kota','nama_provinsi','harga','gambar','Latitude','longitude'];
 
     public function getAvatar()
     {
@@ -18,10 +18,14 @@ class Destinasi extends Model
     }
     public function Provinsi()
     {
-    	$this->hasMany('App\Provinsi');
+    	return $this->hasMany('App\Provinsi');
     }
     public function Kota()
     {
-    	$this->hasMany('App\Kota');
+    	return $this->hasMany('App\Kota');
+    }
+    public function paket()
+    {
+        return $this->hasMany('App\Paket');
     }
 }

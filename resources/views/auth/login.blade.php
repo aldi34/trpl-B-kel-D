@@ -108,7 +108,7 @@ h2{
 }
 .login-reg-panel #label-login, 
 .login-reg-panel #label-register{
-    border:1px solid #007bff;
+    border:1px solid #fa333f;
     color: #fff;
     padding:5px 5px;
     width:150px;
@@ -118,7 +118,7 @@ h2{
     cursor:pointer;
     font-weight: 600;
     font-size: 18px;
-    background-color: #007bff;
+    background-color: #fa333f;
 }
 .login-info-box{
     width:30%;
@@ -176,7 +176,7 @@ h2{
 .login-show a{
     display:inline-block;
     padding:10px 0;
-    color: #007bff;
+    color: #fa333f;
 }
 
 .register-show input[type="text"], .register-show input[type="number"], .register-show input[type="password"]{
